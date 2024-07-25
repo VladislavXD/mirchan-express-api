@@ -6,7 +6,7 @@ services:
       - '5000:5000'
     depends_on:
       - db
-      - client
+      # - client
     environment:
       DATABASE_URL: 'mongodb://monty:pass@db:27017/mydatabase?authSource=admin&directConnection=true'
  db: # База данных
@@ -16,8 +16,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: monty
       MONGO_INITDB_ROOT_PASSWORD: pass
- client: # React-приложение
-    build: ../client # Путь к вашему React-приложению относительно корня вашего проекта
-    ports:
-      - "80:80"
-      - '8000:8000' # Порт, на котором будет доступно ваше React-приложение
+#  client: # React-приложение
+#     build: ../client # Путь к вашему React-приложению относительно корня вашего проекта
+#     ports:
+#       - "80:80"
+#       - '8000:8000' # Порт, на котором будет доступно ваше React-приложение
