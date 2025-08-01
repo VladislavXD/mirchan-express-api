@@ -23,7 +23,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use('/api', indexRouter);
 
-// Создаем папку uploads только если она не существует (для локальной разработки)
+// Создаем папку uploads только если она не существует (для локальной разработки
 if (!fs.existsSync(path.join(__dirname, 'uploads'))) {
   fs.mkdirSync(path.join(__dirname, 'uploads'))
 }
