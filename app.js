@@ -6,7 +6,7 @@ const logger = require('morgan');
 const fs = require('fs')
 const indexRouter = require('./routes/index');
 const cors = require('cors')
-require('dotenv').config
+require('dotenv').config()
 
 const app = express();
 
@@ -19,12 +19,14 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'jade');
 // Раздаем статический файлы из папки uploads
-app.use('/uploads', express.static('uploads'))
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use('/api', indexRouter);
 
-
-if (!fs.existsSync('uploads')) fs.mkdirSync('uploads')
+// Создаем папку uploads только если она не существует (для локальной разработки)
+if (!fs.existsSync(path.join(__dirname, 'uploads'))) {
+  fs.mkdirSync(path.join(__dirname, 'uploads'))
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
